@@ -11,3 +11,19 @@
 *.lai
 *.la
 *.a
+
+#CodeBlocks
+*.depend
+*.layout
+
+#get rid of bin/
+[Bb]in/
+obj/
+
+#linux stuffs
+*~
+
+
+
+
+
