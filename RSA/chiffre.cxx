@@ -1,6 +1,5 @@
-// Fichier tp2-ex1.c
 #include <iostream>
-#include <gmp.h>
+#include <gmpxx.h>
 
 using namespace std;
 
