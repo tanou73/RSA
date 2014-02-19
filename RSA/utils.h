@@ -11,8 +11,8 @@ class Utils
 
 	// public
 	public:
-		static mpz_class getNombrePremier();
-		static bool estPremierLent(mpz_class nb);
+		static mpz_class getNombrePremier(gmp_randclass& seeder);
+		static bool estPremierLent(mpz_class& nb);
 };
 
 #endif // UTILS_H

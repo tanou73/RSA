@@ -19,7 +19,7 @@ RUNTIMELIB=${GMPDIR}/lib
 LIBS=-lgmp 
 LIBSXX=-lgmpxx -lgmp
 CC=gcc -g -c
-CXX=g++ -g -c
+CXX=g++ -g -Wall -c
 LD=gcc -Xlinker -rpath -Xlinker ${RUNTIMELIB}
 LDXX=g++ -Xlinker -rpath -Xlinker ${RUNTIMELIB}
 OBJ=${SRC:.c=.o}
