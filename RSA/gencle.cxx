@@ -28,6 +28,14 @@ int main( int argc, char ** argv )
   mpz_class C = Utils::genereNombrePremier(rr, M);
   cout << "C --> " << C << endl;
 
-  // cle public K = (N,C)
-  cout << "Votre clé est : (" << N << "," << C << ")." << endl;
+  // cle public K = (N,C)  
+  cout << "************************************************************" << endl;
+  cout << "Votre clé publique (N,C) est : (" << N << "," << C << ")." << endl;
+  cout << "************************************************************" << endl;
+
+  //  U tel que C*U + M*V = 1
+  //  U est l'inverse C (bézout)
+  mpz_class U = Utils::algorithmeBezout(C%M, M);
+  cout << "Votre clé privée (N,U) est : (" << N << "," << U << ")." << endl;
+  cout << "************************************************************" << endl;
 }

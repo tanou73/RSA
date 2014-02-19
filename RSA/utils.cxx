@@ -47,6 +47,32 @@ mpz_class Utils::pgcd(mpz_class& m, mpz_class& n)
 	return m;
 }
 
+mpz_class Utils::algorithmeBezout(mpz_class C, mpz_class M) {
+	mpz_class r = C;
+	mpz_class r1 = M;
+	mpz_class u = 1;
+	mpz_class v = 0;
+	mpz_class u1 = 0;
+	mpz_class v1 = 1;
+	// variable auxiliaires
+	mpz_class rs, us, vs, q;
+ 
+	while (r1 != 0){
+		q = r / r1; // on prend que la partie entiere
+		rs = r;
+		us = u;
+		vs = v;
+		r = r1;
+		u = u1;
+		v = v1;
+		r1 = rs - q *r1;
+		u1 = us - q*u;
+		v1 = vs - q*v1;
+	}
+
+	return u;
+}
+
 bool Utils::estPremierLent(mpz_class& n){
 	mpz_class m = sqrt( n );
 
