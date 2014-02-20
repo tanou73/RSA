@@ -3,7 +3,7 @@
 #include "utils.h"
 
 using namespace std;
-
+//http://fr.openclassrooms.com/informatique/cours/la-cryptographie-asymetrique-rsa/creation-de-la-cle-privee
 int main( int argc, char ** argv )
 {
   cout << "** GENERE CLE **" << endl;
