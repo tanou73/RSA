@@ -15,6 +15,7 @@ class Utils
 		static mpz_class genereNombrePremier(gmp_randclass& seeder, mpz_class& M, int t_block);
 		static mpz_class pgcd(mpz_class& a, mpz_class& b);
 		static mpz_class algorithmeBezout(mpz_class C, mpz_class M);
+		static void litFichierPrive(const char * fileName , mpz_class &bits , mpz_class &n , mpz_class &p , mpz_class &q , mpz_class &a, mpz_class &b );
 		static mpz_class inverseModulaire(mpz_class C, mpz_class M);
 		static bool estPremierLent(mpz_class& nb);
 		static bool sontPremier(mpz_class a, mpz_class b);

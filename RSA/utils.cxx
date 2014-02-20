@@ -1,5 +1,6 @@
 #include <iostream>
 #include <gmpxx.h>
+#include <fstream>
 #include "utils.h"
 
 using namespace std;
@@ -51,6 +52,34 @@ mpz_class Utils::inverseModulaire(mpz_class C, mpz_class M) {
 
 	return u;
 }
+
+void Utils::litFichierPrive(const char * fileName , mpz_class &bits , mpz_class &n , mpz_class &p , mpz_class &q , mpz_class &a, mpz_class &b )
+{
+
+	ifstream file(fileName, ios::in);
+
+	if (file)
+	{
+		clog <<  fileName << " chargé " << endl;
+		string data[6];
+		int i = 0;
+		string word;
+		while (file >> data[i++]);
+		bits = data[0];
+		n = data[1];
+		p = data[2];
+		q = data[3];
+		a = data[4];
+		b = data[5];
+		file.close();
+	}
+	else
+	{
+		cerr << "Impossible d'ouvrir " << fileName << endl;
+		exit(1);
+	}
+}
+
 
 mpz_class Utils::algorithmeBezout(mpz_class u, mpz_class v) {
 	mpz_class inv, u1, u3, v1, v3, t1, t3, q;
