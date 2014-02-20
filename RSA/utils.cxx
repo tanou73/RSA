@@ -3,6 +3,9 @@
 #include <fstream>
 #include <cstdlib>
 #include "utils.h"
+#include "sha1.h"
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
@@ -175,4 +178,30 @@ bool Utils::chiffre(mpz_class n, mpz_class b, int bits)
 	cout << "# "<< totalBytesRead << " bytes read, " <<  totalBlocsNumber << " blocs read." << endl;
 
 	return true;
+}
+
+string Utils::encryptSha1(string c)
+{
+	SHA1 sha;
+    unsigned msgDigest[5];
+    string d;
+
+    sha.Reset();
+    sha << c.c_str();
+
+    if (!sha.Result(msgDigest))
+    {
+        cerr << "ERROR-- could not compute message digest" << endl;
+    }
+    else
+    {
+        for(int i = 0; i < 5 ; i++)
+        {
+            stringstream buffer;
+            buffer << hex << msgDigest[i];
+            d = d + buffer.str();
+        }
+    }
+
+    return d;
 }

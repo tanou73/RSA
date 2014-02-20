@@ -5,11 +5,11 @@ GMPDIR=/usr/local
 # Vos sources C, par exemple : SRC=source.c
 SRC=
 # Vos sources C++, par exemple : SRCXX=source2.cxx
-SRCXX=utils.cxx
+SRCXX=utils.cxx sha1.cxx
 # Vos executables C, par exemple : EXEC=progc
 EXEC=
 # Vos executables C++, par exemple : EXECXX=progcxx
-EXECXX=gencle chiffre dechiffre signe verifie
+EXECXX=gencle chiffre dechiffre signe verifie msgToSha1
 
 ####################################################
 # ne pas toucher
@@ -51,6 +51,10 @@ signe: $(OBJXX) signe.cxx
 	$(LDXX) $@.o $(OBJXX) $(LIBDIR) $(LIBSXX) -o $@
 
 verifie: $(OBJXX) verifie.cxx 
+	$(CXX) -c $(INCDIR) $@.cxx
+	$(LDXX) $@.o $(OBJXX) $(LIBDIR) $(LIBSXX) -o $@
+
+msgToSha1: $(OBJXX) msgToSha1.cxx 
 	$(CXX) -c $(INCDIR) $@.cxx
 	$(LDXX) $@.o $(OBJXX) $(LIBDIR) $(LIBSXX) -o $@
 

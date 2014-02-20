@@ -2,7 +2,9 @@
 #define UTILS_H
 #include <iostream>
 #include <gmpxx.h>
+#include <fstream>
 #include <cstdlib>
+#include <string>
 
 class Utils
 {
@@ -21,6 +23,7 @@ class Utils
 		static bool estPremierLent(mpz_class& nb);
 		static bool sontPremier(mpz_class a, mpz_class b);
 		static bool chiffre(mpz_class n, mpz_class b, int bits);
+		static std::string encryptSha1(std::string c);
 };
 
 #endif // UTILS_H
