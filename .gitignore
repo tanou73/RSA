@@ -30,7 +30,8 @@ obj/
 #linux stuffs
 *~
 
-
+#project files
+*.priv
 
 
 
