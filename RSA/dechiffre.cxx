@@ -19,7 +19,7 @@ int main( int argc, char ** argv )
 	mpz_class n,p,q,a,b;
 	Utils::litFichierPrive(fileName,bits,n,p,q,a,b);
 
-
+	
 
 	return 0;
 }
