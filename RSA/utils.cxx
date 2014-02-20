@@ -1,6 +1,7 @@
 #include <iostream>
 #include <gmpxx.h>
 #include <fstream>
+#include <cstdlib>
 #include "utils.h"
 
 using namespace std;
@@ -53,7 +54,7 @@ mpz_class Utils::inverseModulaire(mpz_class C, mpz_class M) {
 	return u;
 }
 
-void Utils::litFichierPrive(const char * fileName , mpz_class &bits , mpz_class &n , mpz_class &p , mpz_class &q , mpz_class &a, mpz_class &b )
+void Utils::litFichierPrive(const char * fileName , int &bits , mpz_class &n , mpz_class &p , mpz_class &q , mpz_class &a, mpz_class &b )
 {
 
 	ifstream file(fileName, ios::in);
@@ -63,9 +64,13 @@ void Utils::litFichierPrive(const char * fileName , mpz_class &bits , mpz_class 
 		clog <<  fileName << " chargé " << endl;
 		string data[6];
 		int i = 0;
-		string word;
+
 		while (file >> data[i++]);
-		bits = data[0];
+
+		clog << "ok" << endl;
+
+		bits = atoi(data[0].c_str());
+		clog << "ok2" << endl;
 		n = data[1];
 		p = data[2];
 		q = data[3];

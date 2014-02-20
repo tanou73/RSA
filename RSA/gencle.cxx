@@ -77,8 +77,7 @@ int main( int argc, char ** argv )
   cout << "####################" << endl;
   cout << "# Votre clé privée (N,U) est : (" << N << "," << U << ")." << endl;
 
-  fichier << t_block << " " << N << " " << P << " " << Q << " " << U << " " << C << endl;
-  fichier << "# t n p q a b " << endl;
+  fichier << t_block << " " << N << " " << P << " " << Q << " " << U << " " << C;
 
   // Fermeture fichier
   fichier.close();
