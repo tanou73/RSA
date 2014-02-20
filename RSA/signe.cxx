@@ -20,5 +20,5 @@ int main( int argc, char * argv [] )
 
     Utils::litFichierPrive(argv[1], bits, n, p, q, a, b);
 
-    cout << bits << n << p << q << a << b << endl;
+    Utils::chiffre(n, a, bits);
 }

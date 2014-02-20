@@ -66,11 +66,7 @@ void Utils::litFichierPrive(const char * fileName , int &bits , mpz_class &n , m
 		int i = 0;
 
 		while (file >> data[i++]);
-
-		clog << "ok" << endl;
-
 		bits = atoi(data[0].c_str());
-		clog << "ok2" << endl;
 		n = data[1];
 		p = data[2];
 		q = data[3];
