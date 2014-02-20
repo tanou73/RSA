@@ -77,15 +77,6 @@ int main( int argc, char ** argv )
   cout << "####################" << endl;
   cout << "# Votre clé privée (N,U) est : (" << N << "," << U << ")." << endl;
 
-  // Ecriture dans le fichier
-  fichier << "###### RSA ######" << endl;
-  fichier << "# Taille " << t_block << "bits" << endl;  
-  fichier << "#################" << endl << endl;
-  fichier << "# P --> " << P << endl << "# Q --> " << Q << endl;
-  fichier << "# Publique N : " << N << endl;
-  fichier << "# Publique C : " << C << endl;
-  fichier << "# Privée N : " << N << endl;
-  fichier << "# Privée U : " << U << endl;
   fichier << t_block << " " << N << " " << P << " " << Q << " " << U << " " << C << endl;
   fichier << "# t n p q a b " << endl;
 

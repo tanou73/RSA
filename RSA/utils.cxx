@@ -119,37 +119,10 @@ mpz_class Utils::algorithmeBezout(mpz_class u, mpz_class v) {
         inv = v - u1;
     else
         inv = u1;
-    
+
     return inv;
 }
 
-/*
-mpz_class Utils::algorithmeBezout(mpz_class C, mpz_class M) {
-	mpz_class r = C;
-	mpz_class r1 = M;
-	mpz_class u = 1;
-	mpz_class v = 0;
-	mpz_class u1 = 0;
-	mpz_class v1 = 1;
-	// variable auxiliaires
-	mpz_class rs, us, vs, q;
- 
-	while (r1 != 0){
-		q = r / r1; // on prend que la partie entiere
-		rs = r;
-		us = u;
-		vs = v;
-		r = r1;
-		u = u1;
-		v = v1;
-		r1 = rs - q *r1;
-		u1 = us - q*u;
-		v1 = vs - q*v1;
-	}
-
-	return u;
-}
-*/
 bool Utils::estPremierLent(mpz_class& n){
 	mpz_class m = sqrt( n );
 
@@ -160,5 +133,45 @@ bool Utils::estPremierLent(mpz_class& n){
 		if ( (n % i) == 0 ) 
 			return false;
 	
+	return true;
+}
+
+bool Utils::chiffre(mpz_class n, mpz_class b, int bits)
+{
+	//bits to bytes
+	int bytes = bits / 8 ;
+
+	char buffer[bytes];
+	size_t totalBlocsNumber = 0;
+	size_t totalBytesRead = 0;
+	int charRead;
+	
+	while (!cin.eof()) 
+	{
+		cin.read(buffer,bytes);
+		charRead = cin.gcount();
+	    if (charRead < bytes)
+	    {
+	    	//si moins de chars ont été lus, on efface la fin du buffer
+	    	for (int i = charRead; i < bytes; ++i)
+	    	{
+	    		buffer[i] = 0;
+	    	}
+	    }
+
+	    mpz_class z;
+	    //transforme les chars en grands entiers
+		mpz_import(z.get_mpz_t(), bytes, 1, sizeof(buffer[0]), 0, 0, buffer);
+
+		mpz_class res;
+		//puissance, puis modulo
+		mpz_powm(res.get_mpz_t(),z.get_mpz_t(),b.get_mpz_t(),n.get_mpz_t());
+		cout << res << endl;
+
+		totalBytesRead += charRead;
+		++totalBlocsNumber;
+	}
+	cout << "# "<< totalBytesRead << " bytes read, " <<  totalBlocsNumber << " blocs read." << endl;
+
 	return true;
 }
