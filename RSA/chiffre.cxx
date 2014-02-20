@@ -23,5 +23,4 @@ int main( int argc, char * argv [] )
 
 	cout << "Clé publique utilisée  : (" << n << "," << b << ") "  << endl;
 	cout << "Message : " << message << endl;
-
 }
