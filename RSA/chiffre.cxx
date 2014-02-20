@@ -21,10 +21,11 @@ int main( int argc, char * argv [] )
 
 	//bits to bytes
 	int bytes = bits / 8 ;
+
 	char buffer[bytes];
 	size_t totalBlocsNumber = 0;
 	size_t totalBytesRead = 0;
-	size_t charRead;
+	int charRead;
 	
 	while (!cin.eof()) 
 	{
@@ -41,15 +42,15 @@ int main( int argc, char * argv [] )
 
 	    mpz_class z;
 	    //transforme les chars en grands entiers
-  		mpz_import(z.get_mpz_t(), bytes, 1, sizeof(buffer[0]), 0, 0, buffer);
+		mpz_import(z.get_mpz_t(), bytes, 1, sizeof(buffer[0]), 0, 0, buffer);
 
-  		mpz_class res;
-  		//puissance, puis modulo
-  		mpz_powm(res.get_mpz_t(),z.get_mpz_t(),b.get_mpz_t(),n.get_mpz_t());
-  		cout << res << endl;
+		mpz_class res;
+		//puissance, puis modulo
+		mpz_powm(res.get_mpz_t(),z.get_mpz_t(),b.get_mpz_t(),n.get_mpz_t());
+		cout << res << endl;
 
-  		totalBytesRead += charRead;
-  		++totalBlocsNumber;
+		totalBytesRead += charRead;
+		++totalBlocsNumber;
 	}
 	cout << "# "<< totalBytesRead << " bytes read, " <<  totalBlocsNumber << " blocs read." << endl;
 }
