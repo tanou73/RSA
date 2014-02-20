@@ -21,6 +21,7 @@ class Utils
 		static bool estPremierLent(mpz_class& nb);
 		static bool sontPremier(mpz_class a, mpz_class b);
 		static bool chiffre(mpz_class n, mpz_class b, int bits);
+		static void dechiffre(mpz_class n, mpz_class b, int bits);
 };
 
 #endif // UTILS_H

@@ -61,7 +61,6 @@ void Utils::litFichierPrive(const char * fileName , int &bits , mpz_class &n , m
 
 	if (file)
 	{
-		clog <<  fileName << " chargé " << endl;
 		string data[6];
 		int i = 0;
 
@@ -136,6 +135,57 @@ bool Utils::estPremierLent(mpz_class& n){
 	
 	return true;
 }
+
+void Utils::dechiffre(mpz_class n, mpz_class b, int bits)
+{
+	int bytes = bits / 8 ;
+	string msg = "";
+
+
+
+	while ( getline(cin,msg))
+	{
+		if (msg[0] != '#')
+		{
+
+			mpz_class current(msg);
+
+			mpz_class res;
+			mpz_powm(res.get_mpz_t(),current.get_mpz_t(),b.get_mpz_t(),n.get_mpz_t());
+
+
+		//	cout << res << endl;
+
+			char result[bytes];
+			mpz_export (result, NULL, 0, sizeof result, 0, 0,res.get_mpz_t());
+
+
+			for (int i = bytes-1; i >= 0 ; --i)
+			{
+				cout << result[i];	
+			}
+			/*
+			//mpz_export (void *rop, size_t *countp, int order, int size, int endian, size_t nails, mpz_t op)
+			//char ascii[bytes];
+			//size_t * size = 
+			//mpz_export (ascii, size, 1, bytes, 0, 0, res.get_mpz_t());
+
+			char result[bytes];
+    		mpz_export(result, bytes, -1, sizeof result, 0, 0, res.get_mpz_t());
+			cout << result << endl;	
+*/
+			/*
+			for (int i = 0; i < bytes; ++i)
+			{
+				cout << ascii[i] << endl;	
+			}
+			*/
+		}
+	}
+	
+}
+
+
 
 bool Utils::chiffre(mpz_class n, mpz_class b, int bits)
 {
