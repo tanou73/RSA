@@ -15,11 +15,11 @@ int main( int argc, char ** argv )
 
   	const char * fileName =  (argc == 2 ) ? argv[1] : "~/.my_rsa";
 
-		mpz_class bits,n,p,q,a,b;
+	int bits; 
+	mpz_class n,p,q,a,b;
+	Utils::litFichierPrive(fileName,bits,n,p,q,a,b);
 
-		Utils::litFichierPrive(fileName,bits,n,p,q,a,b);
 
-		cout << bits << endl;
 
 	return 0;
 }
