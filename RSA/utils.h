@@ -18,6 +18,7 @@ class Utils
 		static mpz_class inverseModulaire(mpz_class C, mpz_class M);
 		static bool estPremierLent(mpz_class& nb);
 		static bool sontPremier(mpz_class a, mpz_class b);
+		static bool chiffre(mpz_class n, mpz_class b, int bits);
 };
 
 #endif // UTILS_H
