@@ -22,5 +22,5 @@ int main( int argc, char * argv [] )
 
 	string encrypted = Utils::encryptSha1(msg);
 
-	cout << encrypted;
+	cout << encrypted << endl;
 }

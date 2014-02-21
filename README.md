@@ -80,7 +80,7 @@ Peut être utilisé pour faire un checksum SHA-1 sur le message, et de l'envoyer
 
 Le programme signe un message (de l'entrée standard) avec la clé privée du fichier privée généré auparavant . On peut par exemple lui envoyer :
 
-	cat monMessageChiffre.txt | ./msgToSha1 | ./signe 
+	cat monMessageChiffre.txt | ./msgToSha1 | ./signe >> signature.txt
 
 #### Description
 
