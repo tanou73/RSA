@@ -1,10 +1,10 @@
 #Executables
-RSA/chiffre
-RSA/dechiffre
-RSA/gencle
-RSA/verifie
-RSA/signe
-
+chiffre
+dechiffre
+gencle
+verifie
+signe
+msgToSha1
 # Compiled Object files
 *.slo
 *.lo
