@@ -9,9 +9,13 @@ using namespace std;
 // On signe avec notre clé privée, comme ça le destinataire déchiffrera avec notre clé publique
 int main( int argc, char * argv [] )
 {
-    cout << "** SIGNE **" << endl;
-
-    const char * fileName =  (argc == 2 ) ? argv[1] : "~/.my_rsa";
+    string home =  getenv("HOME");
+    const char * fileName = "";
+    if (argc == 2) {
+        fileName = argv[1];
+    } else {
+        fileName = (home + "/.my_rsa").c_str();
+    }
 
     int bits;
     mpz_class n, p, q, a, b;
