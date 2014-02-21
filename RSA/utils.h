@@ -21,7 +21,7 @@ class Utils
 		static void litFichierPrive(const char * fileName , int &bits , mpz_class &n , mpz_class &p , mpz_class &q , mpz_class &a, mpz_class &b );
 		static mpz_class inverseModulaire(mpz_class C, mpz_class M);
 		static bool estPremierLent(mpz_class& nb);
-		static bool sontPremier(mpz_class a, mpz_class b);
+		static bool sontPremier(mpz_class& a, mpz_class& b);
 		static bool chiffre(mpz_class n, mpz_class b, int bits);
 		static std::string encryptSha1(std::string c);
 		static void dechiffre(mpz_class n, mpz_class b, int bits);

@@ -31,9 +31,9 @@ mpz_class Utils::genereNombrePremier(gmp_randclass& seeder, mpz_class& M, int t_
 	return n;
 }
 
-bool Utils::sontPremier(mpz_class m, mpz_class n)
+bool Utils::sontPremier(mpz_class& m, mpz_class& n)
 {
-	return ( pgcd(m,n) == 1 || pgcd(m,n) == -1 );
+	return pgcd(m,n) == 1;
 }
 
 mpz_class Utils::pgcd(mpz_class& m, mpz_class& n)
@@ -143,46 +143,22 @@ void Utils::dechiffre(mpz_class n, mpz_class b, int bits)
 {
 	int bytes = bits / 8 ;
 	string msg = "";
-
+	char result[bytes];
 
 
 	while ( getline(cin,msg))
 	{
 		if (msg[0] != '#')
 		{
-
 			mpz_class current(msg);
-
 			mpz_class res;
 			mpz_powm(res.get_mpz_t(),current.get_mpz_t(),b.get_mpz_t(),n.get_mpz_t());
-
-
-		//	cout << res << endl;
-
-			char result[bytes];
 			mpz_export (result, NULL, 0, sizeof result, 0, 0,res.get_mpz_t());
-
 
 			for (int i = bytes-1; i >= 0 ; --i)
 			{
 				cout << result[i];	
 			}
-			/*
-			//mpz_export (void *rop, size_t *countp, int order, int size, int endian, size_t nails, mpz_t op)
-			//char ascii[bytes];
-			//size_t * size = 
-			//mpz_export (ascii, size, 1, bytes, 0, 0, res.get_mpz_t());
-
-			char result[bytes];
-    		mpz_export(result, bytes, -1, sizeof result, 0, 0, res.get_mpz_t());
-			cout << result << endl;	
-*/
-			/*
-			for (int i = 0; i < bytes; ++i)
-			{
-				cout << ascii[i] << endl;	
-			}
-			*/
 		}
 	}
 	
