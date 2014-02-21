@@ -26,9 +26,9 @@ int main( int argc, char ** argv )
   
   // args
   int t_block;
-  if (argc != 3)
+  if (argc < 2)
   {
-    cout << "Nombre d'arguments incorrect ( [t][fichier] ) " << endl;;
+    cout << "Nombre d'arguments incorrect ( [t] ([fichier]) ) " << endl;;
     exit(1);
   } 
 
@@ -36,7 +36,15 @@ int main( int argc, char ** argv )
   t_block = atoi(argv[1]);
 
   // ouverture fichier
-  char* filename = argv[2];
+  string home =  getenv("HOME");
+  const char * filename = "";
+  if (argc == 3) {
+    filename = argv[2];
+  } else {
+    filename = (home + "/.my_rsa").c_str();
+  }
+
+  cout << filename << endl;
   ofstream fichier(filename, ios::out | ios::trunc);
 
   // pick 2 nombre premier P et Q

@@ -1,9 +1,28 @@
 #include <iostream>
 #include <gmpxx.h>
+#include <cstdlib>
+#include "utils.h"
 
 using namespace std;
+// cat msg.txt | ./msgToSha1 | ./verifie cle pub 32 fichier-signature
 
 int main( int argc, char ** argv )
 {
-  cout << "** VERIFIE **" << endl;
+	cout << "# Verification de signature " << endl;
+
+	if (argc != 5)
+	{
+		cerr << "Nombre d'arguments incorrect ( [n] [b] [t] [fichier-signature] ) " << endl;
+		exit(1);
+	}
+
+	//get args
+	mpz_class n(argv[1]);
+	mpz_class b(argv[2]);
+	int bits = atoi(argv[3]);
+	ofstream fichier(argv[4], ios::in);
+
+	Utils::dechiffre(n, b, bits);
+
+	//TODO comparer
 }
