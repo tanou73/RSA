@@ -50,8 +50,8 @@ int main( int argc, char ** argv )
   gmp_randclass rr(gmp_randinit_mt);
   rr.seed(val);
   // -- Pick random premier
-  mpz_class P = Utils::genereNombrePremier(rr, t_block);
-  mpz_class Q = Utils::genereNombrePremier(rr, t_block);
+  mpz_class P = Utils::genereNombrePremierRapide(rr, t_block);
+  mpz_class Q = Utils::genereNombrePremierRapide(rr, t_block);
   cout << "# Random variables" << endl;
   cout << "# P --> " << P << endl << "# Q -->" << Q << endl;
 
@@ -64,7 +64,7 @@ int main( int argc, char ** argv )
   cout << "# M (P-1)*(Q-1) --> " << M << endl;
 
   // C -> Premier avec M
-  mpz_class C = Utils::genereNombrePremier(rr, M, t_block);
+  mpz_class C = Utils::genereNombrePremierAvecM(rr, M, t_block);
   cout << "# C (generer premier avec M) --> " << C << endl;
 
   // cle public K = (N,C)  

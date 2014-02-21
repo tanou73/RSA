@@ -20,7 +20,7 @@ mpz_class Utils::genereNombrePremier(gmp_randclass& seeder, int t_block)
 	return n;
 }
 
-mpz_class Utils::genereNombrePremier(gmp_randclass& seeder, mpz_class& M, int t_block)
+mpz_class Utils::genereNombrePremierAvecM(gmp_randclass& seeder, mpz_class& M, int t_block)
 {
 	mpz_class n;
 
@@ -31,9 +31,31 @@ mpz_class Utils::genereNombrePremier(gmp_randclass& seeder, mpz_class& M, int t_
 	return n;
 }
 
+mpz_class Utils::genereNombrePremierRapide(gmp_randclass& seeder, int t_block)
+{
+	mpz_class n;
+	int interations = 50;
+	do 
+	{
+		n = seeder.get_z_bits(t_block);
+	}while (!estPremierRapide(seeder,n,t_block,interations));
+
+	return n;
+}
+
 bool Utils::sontPremier(mpz_class& m, mpz_class& n)
 {
-	return pgcd(m,n) == 1;
+	/*
+	mpz_class res = pgcd(m,n);
+	return ( res == 1 || res == -1 );
+	*/
+	mpz_class a(m);
+	mpz_class b(n);
+  for ( ; ; ) {
+    if ((a %= b) == 0) return b == 1 ;
+    if ((b %= a) == 0) return a == 1 ;
+  }
+
 }
 
 mpz_class Utils::pgcd(mpz_class& m, mpz_class& n)
@@ -137,6 +159,45 @@ bool Utils::estPremierLent(mpz_class& n){
 			return false;
 	
 	return true;
+}
+
+bool Utils::estPremierRapide(gmp_randclass& seeder, const mpz_class& p, int t_block, int iteration)
+{
+    if(p<2){
+        return false;
+    }
+    if(p!=2 && p%2==0)
+    {
+        return false;
+    }
+    mpz_class s(p-1);
+    while(s%2==0)
+    {
+        s/=2;
+    }
+    for(int i=0;i<iteration;i++)
+    {
+    	mpz_class a = seeder.get_z_bits(t_block);
+    	a = a % (p-1) + 1;
+    	mpz_class temp(s);
+    	mpz_class mod; 
+        //long long a=rand()%(p-1)+1,temp=s;
+        //long long mod=modulo(a,temp,p);
+   		mpz_powm(mod.get_mpz_t(),a.get_mpz_t(),temp.get_mpz_t(),p.get_mpz_t());
+
+        while(temp!=p-1 && mod!=1 && mod!=p-1)
+        {
+            //mod=mulmod(mod,mod,p);
+        	mpz_class two(2);
+   			mpz_powm(mod.get_mpz_t(),mod.get_mpz_t(),two.get_mpz_t(),p.get_mpz_t());
+            temp *= 2;
+        }
+        if(mod!=p-1 && temp%2==0)
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 void Utils::dechiffre(mpz_class n, mpz_class b, int bits)
