@@ -10,7 +10,12 @@ Cette suite de programme vous permet de :
 * le signer
 * le vérifier
 
-Ce programme utilise des grands entiers pour assurer la sécurité
+Ce programme utilise des grands entiers (GMP) pour assurer la sécurité.
+
+#Compilation
+
+Rendez-vous dans le dossier RSA pour compiler et utiliser les programmes:
+	cd RSA && make clean && make
 
 # Programmes
 
