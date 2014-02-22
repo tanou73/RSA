@@ -45,17 +45,15 @@ mpz_class Utils::genereNombrePremierRapide(gmp_randclass& seeder, int t_block)
 
 bool Utils::sontPremier(mpz_class& m, mpz_class& n)
 {
-	/*
-	mpz_class res = pgcd(m,n);
-	return ( res == 1 || res == -1 );
-	*/
+
 	mpz_class a(m);
 	mpz_class b(n);
-  for ( ; ; ) {
-    if ((a %= b) == 0) return b == 1 ;
-    if ((b %= a) == 0) return a == 1 ;
-  }
-
+	//pgcd en peu de lignes
+	while (true)
+  	{
+    	if ((a %= b) == 0) return b == 1 ;
+    	if ((b %= a) == 0) return a == 1 ;
+  	}
 }
 
 mpz_class Utils::pgcd(mpz_class& m, mpz_class& n)

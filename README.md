@@ -5,10 +5,10 @@ RSA
 
 Cette suite de programme vous permet de :
 * génerer des clés RSA
-* de chiffre un message
-* de le déchiffrer
-* de le signer
-* de vérifier. 
+* chiffrer un message
+* le déchiffrer
+* le signer
+* le vérifier
 
 Ce programme utilise des grands entiers pour assurer la sécurité
 
@@ -20,12 +20,12 @@ Ce programme utilise des grands entiers pour assurer la sécurité
 
 	./gencle [t] ([file])
 
-> [t] : nombre de bits pour générer les clés
+> [t] : nombre de bits pour générer les clés ( temps correct jusqu'à 2048 bits)
 > ([file]) : Optionel: nom du fichier privée dans lequel sauvegarder les clés (par défaut ~/.my_rsa)
 
 #### Description
 
-Ce programme génére les clés publiques et les clés privées. Ces clés sont affiché puis stocké dans un fichier privée (lecteur et écriture autorisé que pour l'utilisateur courant).
+Ce programme génére les clés publiques et les clés privées. Ces clés sont affichées puis stockées dans un fichier privé (lectures et écritures autorisées seulement pour l'utilisateur courant).
 
 ## Chiffre
 
@@ -78,10 +78,14 @@ Peut être utilisé pour faire un checksum SHA-1 sur le message, et de l'envoyer
 
 #### Lancer le programme
 
-Le programme signe un message (de l'entrée standard) avec la clé privée du fichier privée généré auparavant . On peut par exemple lui envoyer :
+Le programme signe un message (de l'entrée standard) avec la clé privée du fichier privée générée auparavant . On peut par exemple lui envoyer le sha1 du message, puis l'enregistrer dans un fichier :
 
 	cat monMessageChiffre.txt | ./msgToSha1 | ./signe >> signature.txt
 
 #### Description
 
 Ce programme signe le message placé dans l'entrée standard et renvoie le résultat sur la sortie standard.
+
+## Verifie
+
+_todo_

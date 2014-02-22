@@ -22,7 +22,7 @@ using namespace std;
 **/
 int main( int argc, char ** argv )
 {
-  cout << "** GENERE CLE **" << endl;
+  cout << endl << "** GENERE CLE **" << endl;
   
   // args
   int t_block;
@@ -44,7 +44,6 @@ int main( int argc, char ** argv )
     filename = (home + "/.my_rsa").c_str();
   }
 
-  cout << filename << endl;
   ofstream fichier(filename, ios::out | ios::trunc);
 
   // pick 2 nombre premier P et Q
@@ -76,16 +75,17 @@ int main( int argc, char ** argv )
   cout << "# C (generer premier avec M) --> " << C << endl;
 
   // cle public K = (N,C)  
-  cout << "####################" << endl;
-  cout << "# Votre clé publique (N,C) est : (" << N << "," << C << ")." << endl;
+  cout << "##############################################" << endl << endl;
+  cout << "# Votre clé publique N C t est : " << endl  << endl  << N << " " << C << " " << t_block << endl << endl;
 
   //  U tel que C*U + M*V = 1
   //  U est l'inverse C (bézout)
   mpz_class U = Utils::inverseModulaire(C, M);  
-  cout << "####################" << endl;
-  cout << "# Votre clé privée (N,U) est : (" << N << "," << U << ")." << endl;
+  cout << "# Votre clé privée N U t est : "<< endl << endl << N << " " << U << " " << t_block << endl << endl;
 
+  //écriture dans le fichier
   fichier << t_block << " " << N << " " << P << " " << Q << " " << U << " " << C;
+  cout << "Données inscrites dans le fichier : " << filename << endl << endl;
 
   // Fermeture fichier
   fichier.close();
