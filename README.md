@@ -127,6 +127,11 @@ Le programme vérifie une signature envoyé sur l'entrée standard par rapport �
 
 	cat signature-to-test.txt | ./verifie sender.pub sender.sign
 
+ou
+
+	cat signature-to-test.txt | ./verifie [n] [b] [t] sender.sign
+
 > entrée standard : la signature à vérifier
 > [sender.pub] : la clé publique de l'expéditeur
+> [n] [b] [t] : clé publique de l'expéditeur et taille des blocs
 > [sender.sign] : la signature attendu de l'expéditeur
