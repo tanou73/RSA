@@ -20,19 +20,21 @@ Rendez-vous dans le dossier RSA pour compiler et utiliser les programmes:
 
 # Tester la suite 
 
-Générer vos clés (le nom du fichier est optionnel, cf. Programmes/gencle) :
+Générez vos clés (le nom du fichier est optionnel, cf. Programmes/gencle) :
 
 	./gencle 1024 key
 
-Chiffrer (avec votre clé publique) et déchiffrer (avec votre clé privée) votre message :
+_Les fichiers key.priv et key.pub seront créés._
+
+Chiffrez (avec votre clé publique) et déchiffrez (avec votre clé privée) votre message :
 
 	cat msg.txt | ./chiffre key.pub | ./dechiffre key.priv
 
-Préparer votre signature et stoqué la dans un fichier
+Préparez votre signature et stockez-la dans un fichier
 
 	cat msg.txt | ./msgToSha1 >> fichier.sign
 
-On va maintenant encrypté notre message en SHA-1, le signer et vérifier notre signature en la comparant avec nos fichier.sign
+On va maintenant encrypter notre message en SHA-1, le signer et vérifier notre signature en la comparant avec nos fichier.sign
 
 	cat msg.txt | ./msgToSha1 | ./signe key.priv | ./verifie key.pub fichier.sign
 
