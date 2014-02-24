@@ -22,7 +22,7 @@ Rendez-vous dans le dossier RSA pour compiler et utiliser les programmes:
 
 Générer vos clés (le nom du fichier est optionnel, cf. Programmes/gencle) :
 
-	gencle 1024 key
+	./gencle 1024 key
 
 Chiffrer (avec votre clé publique) et déchiffrer (avec votre clé privée) votre message :
 
