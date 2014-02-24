@@ -11,24 +11,34 @@
 
 using namespace std;
 
-
-
-
-
 int main( int argc, char ** argv )
 {
 	cout << "# Verification de signature " << endl;
 
-	if (argc != 5)
+	//get args
+	mpz_class n, b;
+	int bits;
+	string filename;
+
+	if (argc == 5)
+	{
+		n = argv[1];
+		b = argv[2];
+		bits = atoi(argv[3]);
+		filename = argv[4];
+	} 
+	else if (argc == 3)
+	{
+		Utils::litFichierPublic(argv[1], bits, n, b);
+		filename = argv[2];
+	}
+	else 
 	{
 		cerr << "Nombre d'arguments incorrect ( [n] [b] [t] [fichier-signature] ) " << endl;
 		exit(1);
 	}
-	//get args
-	mpz_class n(argv[1]);
-	mpz_class b(argv[2]);
-	int bits = atoi(argv[3]);
-	ifstream fichier(argv[4], ios::in);
+
+	ifstream fichier(filename.c_str(), ios::in);
 
 	string signature = "";
 	string line = "";

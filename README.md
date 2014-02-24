@@ -28,7 +28,13 @@ Chiffrer (avec votre clé publique) et déchiffrer (avec votre clé privée) vot
 
 	cat msg.txt | ./chiffre key.pub | ./dechiffre key.priv
 
-cat msg.txt | ./msgToSha1 | ./signe key.priv | ./verifie key.pub
+Préparer votre signature et stoqué la dans un fichier
+
+	cat msg.txt | ./msgToSha1 >> fichier.sign
+
+On va maintenant encrypté notre message en SHA-1, le signer et vérifier notre signature en la comparant avec nos fichier.sign
+
+	cat msg.txt | ./msgToSha1 | ./signe key.priv | ./verifie key.pub fichier.sign
 
 # Programmes
 
@@ -115,4 +121,12 @@ Ce programme signe le message placé dans l'entrée standard et renvoie le résu
 
 ## Verifie
 
-_todo_
+#### Lancer le programme
+
+Le programme vérifie une signature envoyé sur l'entrée standard par rapport à un fichier signature passé en paramètre. 
+
+	cat signature-to-test.txt | ./verifie sender.pub sender.sign
+
+> entrée standard : la signature à vérifier
+> [sender.pub] : la clé publique de l'expéditeur
+> [sender.sign] : la signature attendu de l'expéditeur
