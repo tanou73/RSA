@@ -26,7 +26,7 @@ class Utils
 		static bool sontPremier(mpz_class& a, mpz_class& b);
 		static bool chiffre(mpz_class n, mpz_class b, int bits);
 		static std::string encryptSha1(std::string c);
-		static void dechiffre(mpz_class n, mpz_class b, int bits);
+		static std::string dechiffre(mpz_class n, mpz_class b, int bits, bool displayOnCout = true);
 };
 
 #endif // UTILS_H

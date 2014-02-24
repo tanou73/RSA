@@ -6,6 +6,7 @@
 #include "sha1.h"
 #include <iomanip>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -198,13 +199,13 @@ bool Utils::estPremierRapide(gmp_randclass& seeder, const mpz_class& p, int t_bl
     return true;
 }
 
-void Utils::dechiffre(mpz_class n, mpz_class b, int bits)
+string Utils::dechiffre(mpz_class n, mpz_class b, int bits , bool displayOnCout)
 {
 	int bytes = bits / 8 ;
 	string msg = "";
 	char result[bytes];
 
-
+	string resultStr = "";
 	while ( getline(cin,msg))
 	{
 		if (msg[0] != '#')
@@ -216,10 +217,15 @@ void Utils::dechiffre(mpz_class n, mpz_class b, int bits)
 
 			for (int i = bytes-1; i >= 0 ; --i)
 			{
-				cout << result[i];	
+				resultStr += result[i];
+				if ( displayOnCout )
+				{
+					cout << result[i];
+				}
 			}
 		}
 	}
+	return resultStr;
 	
 }
 
