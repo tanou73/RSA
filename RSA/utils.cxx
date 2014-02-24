@@ -103,6 +103,29 @@ void Utils::litFichierPrive(const char * fileName , int &bits , mpz_class &n , m
 	}
 }
 
+void Utils::litFichierPublic(const char * fileName , int &bits , mpz_class &n, mpz_class &b )
+{
+
+	ifstream file(fileName, ios::in);
+
+	if (file)
+	{
+		string data[6];
+		int i = 0;
+
+		while (file >> data[i++]);
+		bits = atoi(data[0].c_str());
+		n = data[1];
+		b = data[2];
+		file.close();
+	}
+	else
+	{
+		cerr << "Impossible d'ouvrir " << fileName << endl;
+		exit(1);
+	}
+}
+
 
 mpz_class Utils::algorithmeBezout(mpz_class u, mpz_class v) {
 	mpz_class inv, u1, u3, v1, v3, t1, t3, q;

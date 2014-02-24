@@ -35,16 +35,10 @@ int main( int argc, char ** argv )
   // taille des blocks
   t_block = atoi(argv[1]);
 
-  // ouverture fichier
-  string home =  getenv("HOME");
-  const char * filename = "";
-  if (argc == 3) {
-    filename = argv[2];
-  } else {
-    filename = (home + "/.my_rsa").c_str();
-  }
-
-  ofstream fichier(filename, ios::out | ios::trunc);
+  // fichier
+  string home = getenv("HOME");
+  const char * filename =  (argc == 3 ) ? argv[2] : (home + "/.my_rsa").c_str();
+  string filenameStr(filename);
 
   // pick 2 nombre premier P et Q
   // -- init time
@@ -56,6 +50,7 @@ int main( int argc, char ** argv )
   // -- seed the random generator
   gmp_randclass rr(gmp_randinit_mt);
   rr.seed(val);
+
   // -- Pick random premier
   mpz_class P = Utils::genereNombrePremierRapide(rr, t_block);
   mpz_class Q = Utils::genereNombrePremierRapide(rr, t_block);
@@ -81,14 +76,23 @@ int main( int argc, char ** argv )
   //  U tel que C*U + M*V = 1
   //  U est l'inverse C (bézout)
   mpz_class U = Utils::inverseModulaire(C, M);  
-  cout << "# Votre clé privée N U t est : "<< endl << endl << N << " " << U << " " << t_block << endl << endl;
 
-  //écriture dans le fichier
-  fichier << t_block << " " << N << " " << P << " " << Q << " " << U << " " << C;
-  cout << "Données inscrites dans le fichier : " << filename << endl << endl;
+  //écriture dans les fichiers
+  string filenamePriv(filenameStr);
+  filenamePriv += ".priv";
+  ofstream fichierPriv(filenamePriv.c_str(), ios::out | ios::trunc);
+  fichierPriv << t_block << " " << N << " " << P << " " << Q << " " << U << " " << C;
+  fichierPriv.close();
+  cout << "Clé privée inscrite dans le fichier " << filenamePriv << endl;
 
-  // Fermeture fichier
-  fichier.close();
+  string filenamePub(filenameStr);
+  filenamePub += ".pub";
+  ofstream fichierPub(filenamePub.c_str(), ios::out | ios::trunc);
+  fichierPub << t_block << " " << N << " " << C;
+  fichierPub.close();
+  cout << "Clé publique inscrite dans le fichier " << filenamePub << endl << endl;
+
   // CHMOD (que l'utilisateur peut lire et ecrire)
-  chmod(filename, S_IRUSR | S_IWUSR);
+  chmod(filenamePriv.c_str(), S_IRUSR | S_IWUSR);
+  chmod(filenamePub.c_str(), S_IWOTH | S_IROTH | S_IRUSR | S_IWUSR);
 }

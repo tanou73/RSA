@@ -4,7 +4,6 @@
 #include "utils.h"
 
 using namespace std;
-// cat msg.txt | ./msgToSha1 | ./verifie cle pub 32 fichier-signature
 
 int main( int argc, char ** argv )
 {
@@ -24,5 +23,6 @@ int main( int argc, char ** argv )
 
 	Utils::dechiffre(n, b, bits);
 
+	
 	//TODO comparer
 }

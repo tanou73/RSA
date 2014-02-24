@@ -20,6 +20,7 @@ class Utils
 		static mpz_class pgcd(mpz_class& a, mpz_class& b);
 		static mpz_class algorithmeBezout(mpz_class C, mpz_class M);
 		static void litFichierPrive(const char * fileName , int &bits , mpz_class &n , mpz_class &p , mpz_class &q , mpz_class &a, mpz_class &b );
+		static void litFichierPublic(const char * fileName , int &bits , mpz_class &n, mpz_class &b );
 		static mpz_class inverseModulaire(mpz_class C, mpz_class M);
 		static bool estPremierLent(mpz_class& nb);
 		static bool estPremierRapide(gmp_randclass& seeder, const mpz_class& p, int t_block, int iteration);

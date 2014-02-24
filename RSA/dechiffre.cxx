@@ -9,17 +9,14 @@ using namespace std;
 
 int main( int argc, char ** argv )
 {
-  	string home =  getenv("HOME");
-    const char * fileName = "";
-    if (argc == 2) {
-        fileName = argv[1];
-    } else {
-        fileName = (home + "/.my_rsa").c_str();
-    }
+	// fichier
+	string home = getenv("HOME");
+	const char * filenameArg =  (argc == 2 ) ? argv[1] : (home + "/.my_rsa").c_str();
+	string fileName(filenameArg);
 
 	int bits; 
 	mpz_class n,p,q,a,b;
-	Utils::litFichierPrive(fileName,bits,n,p,q,a,b);
+	Utils::litFichierPrive(fileName.c_str(), bits, n, p, q, a, b);
 	Utils::dechiffre(n,a,bits);
 
 

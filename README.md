@@ -18,6 +18,18 @@ Rendez-vous dans le dossier RSA pour compiler et utiliser les programmes:
 
 	cd RSA && make clean && make
 
+# Tester la suite 
+
+Générer vos clés (le nom du fichier est optionnel, cf. Programmes/gencle) :
+
+	gencle 1024 key
+
+Chiffrer (avec votre clé publique) et déchiffrer (avec votre clé privée) votre message :
+
+	cat msg.txt | ./chiffre key.pub | ./dechiffre key.priv
+
+cat msg.txt | ./msgToSha1 | ./signe key.priv | ./verifie key.pub
+
 # Programmes
 
 ## gencle
@@ -31,7 +43,7 @@ Rendez-vous dans le dossier RSA pour compiler et utiliser les programmes:
 
 #### Description
 
-Ce programme génére les clés publiques et les clés privées. Ces clés sont affichées puis stockées dans un fichier privé (lectures et écritures autorisées seulement pour l'utilisateur courant).
+Ce programme génére les clés publiques et les clés privées. Ces clés sont affichées puis stockées dans un fichier privé (lectures et écritures autorisées seulement pour l'utilisateur courant) et publique.
 
 ## Chiffre
 
@@ -41,8 +53,13 @@ Le programme chiffre ce qui se trouve sur l'entrée standard. On peut par exempl
 
 	cat monMessage.txt | ./chiffre [n] [b] [t]
 
+ou 
+
+	cat monMessage.txt | ./chiffre [fichier.pub]
+
 > [n] [b] : clé publique avec laquelle vous voulez chiffrer
 > [t] : taille des blocks pour découper (en bits)
+> [fichier.pub] : Le fichier contenant votre clé publique
 
 #### Description
 
@@ -64,7 +81,11 @@ Ce programme déchiffre le message placé dans l'entrée standard avec la clé s
 
 #### Chiffrer et déchiffrer
 
-	cat msg.txt | ./chiffre 1062080754043853759 2478996599 32 | ./dechiffre
+	cat msg.txt | ./chiffre 1062080754043853759 2478996599 32 | ./dechiffre file.priv
+
+ou
+
+	cat msg.txt | ./chiffre key.pub | ./dechiffre key.priv
 
 ## MessageToSha1
 
